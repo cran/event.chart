@@ -10,15 +10,19 @@ times to be used in the event.chart function.
 event.convert(data2, event.time = 1, event.code = 2)
 }
 \arguments{
-  \item{data2}{a matrix or dataframe with at least 2 columns; by default, the first
-column contains the event time and the second column contains the k event codes (e.g. 1=dead, 0=censord).}
+  \item{data2}{a matrix or dataframe with at least 2 columns; by default, the 
+first
+column contains the event time and the second column contains the k event 
+codes (e.g. 1=dead, 0=censord).}
   \item{event.time}{the column number in data contains the event time.}
   \item{event.code}{the column number in data contains the event code.}
 }
 \value{
   In the survival analysis, the data typically come in two columns: one column
-containing survival time and the other containing censoring indicator or event code. The event.convert function converts this type of data into 
-multiple columns of event times, one column of each event type, suitable for the event.chart
+containing survival time and the other containing censoring indicator or event 
+code. The event.convert function converts this type of data into 
+multiple columns of event times, one column of each event type, suitable for 
+the event.chart
 function.} 
 \examples{
 # To convert coded time-to-event data, then, draw an event chart: 
@@ -38,4 +42,6 @@ line=3)
   \code{\link{month.day.year}}, 
   \code{\link{event.chart}}
 
-\keyword{event.chart,chron}
+\keyword{chron}
+\keyword{datasets}
+

@@ -5,11 +5,11 @@
   Convert between Julian and Calendar Dates.
 }
 \usage{
-month.day.year(jul, origin=c(month=1, day=1, year=1960))
+month.day.year(jul, origin.=c(month=1, day=1, year=1960))
 }
 \arguments{
   \item{jul}{vector of Julian Dates, i.e., number of days since origin.}
-  \item{origin}{vector specifying the origin as month, day, and year. If
+  \item{origin.}{vector specifying the origin as month, day, and year. If
 missing, it defaults to options(chron.origin) if this is
 non-null, otherwise c(month=1, day=1, year=1960).}
 }
@@ -27,4 +27,4 @@ non-null, otherwise c(month=1, day=1, year=1960).}
   \code{\link{event.convert}},
   \code{\link{julian}}
 }
-\keyword{event.chart,chron}
+\keyword{chron}

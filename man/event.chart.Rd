@@ -59,22 +59,31 @@ columns corresponding to variables.  Note that for a data frame or
 matrix containing multiple time-to-event
 data (e.g., time to recurrence, time to death, and time to
 last follow-up), one column is required for each specific event.}
-  \item{subset.r}{subset of rows of original matrix or data frame to place in event chart.
+  \item{subset.r}{subset of rows of original matrix or data frame to place in 
+event chart.
 Logical arguments may be used here.}
-  \item{subset.c}{subset of columns of original matrix or data frame to place in event chart;
+  \item{subset.c}{subset of columns of original matrix or data frame to place 
+in event chart;
 if working with a data frame, a vector of data frame variable names may be
 used for subsetting purposes (e.g., c('randdate', 'event1')).}
-  \item{sort.by}{column(s) or data frame variable name(s) with which to sort the chart's output.
+  \item{sort.by}{column(s) or data frame variable name(s) with which to sort 
+the chart's output.
 The default is NA, thereby resulting in a chart sorted by original row number.}
-  \item{sort.ascending}{logical flag (which takes effect only if the argument sort.by is utilized).
-If TRUE (default), sorting is done in ascending order; if FALSE, descending order.}
-  \item{sort.na.last}{logical flag (which takes effect only if the argument sort.by is utilized).
+  \item{sort.ascending}{logical flag (which takes effect only if the argument 
+sort.by is utilized).
+If TRUE (default), sorting is done in ascending order; if FALSE, descending 
+order.}
+  \item{sort.na.last}{logical flag (which takes effect only if the argument 
+sort.by is utilized).
 If TRUE (default), NA values are considered as last values in ordering.}
-  \item{sort.after.subset}{logical flag (which takes effect only if the argument sort.by is utilized).
+  \item{sort.after.subset}{logical flag (which takes effect only if the 
+argument sort.by is utilized).
 If FALSE, sorting data (via sort.by specified variables
 or columns) will be performed prior to row subsetting (via subset.r);
-if TRUE (default), row subsetting of original data will be done before sorting.}
-  \item{y.var}{variable name or column number of original matrix or data frame with
+if TRUE (default), row subsetting of original data will be done before 
+sorting.}
+  \item{y.var}{variable name or column number of original matrix or data frame 
+with
 which to scale y-axis.
 Default is NA, which will result in equally spaced lines on y-axis
 (based on original data or sorted data if requested by sort.by).
@@ -82,11 +91,13 @@ Otherwise, location of lines on y-axis will be dictated by specified variable
 or column.  Examples of specified variables may be date of an event
 or a physiological covariate.  Any observation which has
 a missing value for the y.var variable will not appear on the graph.}
-  \item{y.var.type}{type of variable specified in y.var (which will only take effect if
+  \item{y.var.type}{type of variable specified in y.var (which will only take 
+effect if
 argument y.var is utilized). If 'd', specifed variable is a date (either
 numeric julian date or a dates object);  if 'n', specifed variable
 is numeric (e.g., systolic blood pressure level) although not a julian date.}
-  \item{y.jitter}{logical flag (which takes effect only if the argument y.var is utilized).
+  \item{y.jitter}{logical flag (which takes effect only if the argument y.var 
+is utilized).
 Due to potential ties in y.var variable, y.jitter (when TRUE) will jitter
 the data to allow discrimination between observations at the possible cost
 of producing slightly inaccurate dates or covariate values;  if FALSE (the
@@ -99,15 +110,18 @@ size.jitter <-(diff(range(y.var))/(2*(length(y.var)-1)) )*y.jitter.factor
 The default of y.jitter.factor is 1.  The entire product is then used as an
 argument into runif:  y.var <-
 y.var + runif(length(y.var), -size.jitter, size.jitter) .}
-  \item{y.jitter.factor}{an argument used with the y.jitter function to scale the range of added noise.
+  \item{y.jitter.factor}{an argument used with the y.jitter function to scale 
+the range of added noise.
 Default is 1.}
-  \item{y.renum}{logical flag.  If TRUE, subset observations are listed on y-axis from
+  \item{y.renum}{logical flag.  If TRUE, subset observations are listed on 
+y-axis from
 1 to length(subset.r); if FALSE (default), subset observations are listed
 on y-axis in original form.  As an example, if subset.r = 301:340 and
 y.renum == TRUE, y-axis will be shown as 1 through 40.  However, if
 y.renum == FALSE, y-axis will be shown as 301 through 340.  The above examples
 assume the following argument, NA.rm, is set to FALSE.}
-  \item{NA.rm}{logical flag.  If TRUE, subset observations which have NA for each variable
+  \item{NA.rm}{logical flag.  If TRUE, subset observations which have NA for 
+each variable
 specified in subset.c will not have an entry on the y-axis.  Also, if
 the following argument, x.reference, is specified, observations with
 missing x.reference values will also not have an entry on the y-axis.  If FALSE
@@ -116,7 +130,8 @@ every variable specified in subset.c (or, if x.reference is specified, also
 those observations which are missing only the x.reference value); this can
 easily be done by examining the resulting y-axis and
 recognizing the observations without any plotting symbols.}
-  \item{x.reference}{column of original matrix or data frame with which to reference the x-axis.
+  \item{x.reference}{column of original matrix or data frame with which to 
+reference the x-axis.
 That is, if specified, all columns specified in subset.c will be substracted
 by x.reference.  An example may be to see the timing of events before and
 after treatment or to see time-to-event after entry into study.
@@ -125,7 +140,8 @@ as the reference point.}
   \item{now}{he 'now' date which will be used for top of y-axis
 when creating the Goldman eventchart (see reference below).
 Default is max(data[, subset.c], na.rm = TRUE).}
-  \item{now.line}{logical flag. A feature utilized by the Goldman Eventchart. When 
+  \item{now.line}{logical flag. A feature utilized by the Goldman Eventchart. 
+When 
 
 x.reference is specified as the start of follow-up and
 y.var = x.reference, then the Goldman chart can be created.
@@ -136,14 +152,17 @@ for looking at the time-to-event data.  Default is FALSE.}
   \item{now.line.lty}{line type of now.line.}
   \item{now.line.lwd}{line width of now.line.}
   \item{now.line.col}{color of now.line.}
-  \item{pty}{graph option, pty='m' is the default; use pty='s' for the square looking
+  \item{pty}{graph option, pty='m' is the default; use pty='s' for the square 
+looking
 Goldman's event chart.}
-  \item{date.orig}{date of origin to consider if dates are in julian, SAS, or S-Plus dates
+  \item{date.orig}{date of origin to consider if dates are in julian, SAS, or 
+S-Plus dates
 object format;  default is January 1, 1960 (which is the default origin
 used by both  S-Plus and SAS).  Utilized when either y.julian = FALSE or
 x.julian = FALSE.}
   \item{titl}{title for event chart.  Default is 'Event Chart'.}
-  \item{y.idlabels.}{column or data frame variable name used for y-axis labels.  For example,
+  \item{y.idlabels.}{column or data frame variable name used for y-axis 
+labels.  For example,
 if c('pt.no') is specified, patient ID (stored in 'pt.no')
 will be seen on y-axis labels
 instead of sequence specified by subset.r.  This argument takes precedence
@@ -152,7 +171,8 @@ NOTE:  Program will issue warning if this argument is
 specified and if is.na(y.var) == FALSE;  y.idlabels will not be
 used in this situation.  Also, attempting to plot too many patients
 on a single event chart will cause undesirable plotting of y.idlabels.}
-  \item{y.axis}{character string specifying whether program will control labelling
+  \item{y.axis}{character string specifying whether program will control 
+labelling
 of y-axis (with argument 'auto'), or if user will control labelling
 (with argument 'custom').  If 'custom' is chosen, user must specify
 location and text of labels using y.axis.custom.at and
@@ -170,18 +190,22 @@ If FALSE (default), will convert julian
 numeric dates or S-Plus dates objects into 'mm/dd/yy' format
 for the y-axis labels.  If TRUE, dates will be printed in
 julian (numeric) format.}
-  \item{y.lim.extend}{two-dimensional vector representing the number of units that the user
+  \item{y.lim.extend}{two-dimensional vector representing the number of units 
+that the user
 wants to increase ylim on bottom and top of y-axis, respectively.
 Default = c(0,0).  This argument will not take effect if the Goldman chart
 is utilized.}
-  \item{y.lab}{single label to be used for entire y-axis.  Default will be the variable name
+  \item{y.lab}{single label to be used for entire y-axis.  Default will be the 
+variable name
 or column number of y.idlabels (if non-missing) and blank otherwise.}
-  \item{x.axis.all}{logical flag. If TRUE (default), lower and upper limits of x-axis will be
+  \item{x.axis.all}{logical flag. If TRUE (default), lower and upper limits of 
+x-axis will be
 based on all observations (rows) in matrix or data frame.  If FALSE, lower and
 upper limits will be based only on those observations specified by subset.r
 (either before or after sorting depending on specification of sort.by and
 value of sort.after.subset).}
-  \item{x.axis}{character string specifying whether program will control labelling
+  \item{x.axis}{character string specifying whether program will control 
+labelling
 of x-axis (with argument 'auto'), or if user will control labelling
 (with argument 'custom').  If 'custom' is chosen, user must specify
 location and text of labels using x.axis.custom.at and
@@ -190,44 +214,54 @@ x.axis.custom.labels arguments, respectively, listed below.}
 Must be used when x.axis == 'custom'; will not be used otherwise.}
   \item{x.axis.custom.labels}{user-specified vector of x-axis labels.
 Must be used when x.axis == 'custom'; will not be used otherwise.}
-  \item{x.julian}{logical flag (which will only be considered if x.axis == 'auto').
+  \item{x.julian}{logical flag (which will only be considered if x.axis == 
+'auto').
 If FALSE (default), will convert julian dates objects
 into 'mm/dd/yy' format for the x-axis labels.  If TRUE, dates will be
 printed in julian (numeric) format.  NOTE:  This argument should remain TRUE if
 x.reference is specified.}
-  \item{x.lim.extend}{two-dimensional vector representing the number of time units (usually in days)
+  \item{x.lim.extend}{two-dimensional vector representing the number of time 
+units (usually in days)
 that the user wants to increase xlim on left-hand side and right-hand
 side of x-axis, respectively.  Default = c(0,0).  This argument will not
 take effect if the Goldman chart is utilized.}
-  \item{x.scale}{a factor whose reciprocal is multiplied to original units of the
+  \item{x.scale}{a factor whose reciprocal is multiplied to original units of 
+the
 x-axis.  For example, if the original data frame is in units of days,
 x.scale = 365 will result in units of years (notwithstanding leap years).
 Default is 1.}
-  \item{x.lab}{single label to be used for entire x-axis.  Default will be 'On Study Date'
+  \item{x.lab}{single label to be used for entire x-axis.  Default will be 'On 
+Study Date'
 if x.julian == FALSE and 'Time on Study' if x.julian = TRUE.}
-  \item{line.by}{column or data frame variable name for plotting unique lines by unique
+  \item{line.by}{column or data frame variable name for plotting unique lines 
+by unique
 values of vector (e.g., specify c('arm') to plot unique lines by
 treatment arm).  Can take at most one column or variable name.
 Default is NA which produces identical lines for each patient.}
-  \item{line.lty}{vector of line types corresponding to ascending order of line.by values.
+  \item{line.lty}{vector of line types corresponding to ascending order of 
+line.by values.
 If line.by is specified, the vector should be the length of
 the number of unique values of line.by.
 If line.by is NA, only line.lty[1] will be used.
 The default is 1.}
-  \item{line.lwd}{vector of line widths corresponding to ascending order of line.by values.
+  \item{line.lwd}{vector of line widths corresponding to ascending order of 
+line.by values.
 If line.by is specified, the vector should be the length of
 the number of unique values of line.by.
 If line.by is NA, only line.lwd[1] will be used.
 The default is 1.}
-  \item{line.col}{vector of line colors corresponding to ascending order of line.by values.
+  \item{line.col}{vector of line colors corresponding to ascending order of 
+line.by values.
 If line.by is specified, the vector should be the length of
 the number of unique values of line.by.
 If line.by is NA, only line.col[1] will be used.
 The default is 1.}
-  \item{line.add}{a 2xk matrix with k=number of pairs of additional line segments to add.
+  \item{line.add}{a 2xk matrix with k=number of pairs of additional line 
+segments to add.
 For example, if it is of interest to draw additional line segments
 connecting events one and two, two and three, and four and five,
-(possibly with different colors), an appropriate line.add argument would be matrix(c
+(possibly with different colors), an appropriate line.add argument would be 
+matrix(c
 ('first.event','second.event','second.event','third.event', 'fourth.event',
 
 'fifth.event'),2, 3).
@@ -235,7 +269,8 @@ One line segment
 would be drawn between first.event and second.event,
 a second line segment would be drawn between second.event and third.event,
 and a third line segment would be drawn between
-fourth.event and fifth.event. Different line types, widths and colors can be specified (in arguments
+fourth.event and fifth.event. Different line types, widths and colors can be 
+specified (in arguments
 listed just below).
 
 The convention use of subset.c and line.add must match (i.e., column name
@@ -247,13 +282,17 @@ must be the same as number of pairs of additional line segments to add.
 NOTE:  The drawing of the original default line
 may be suppressed (with line.col = 0),
 and line.add can be used to do all the line plotting for the event chart.}
-  \item{line.add.lty}{a kx1 vector corresponding to the columns of line.add; specifies the line
+  \item{line.add.lty}{a kx1 vector corresponding to the columns of line.add; 
+specifies the line
 types for the k line segments.}
-  \item{line.add.lwd}{a kx1 vector corresponding to the columns of line.add; specifies the line
+  \item{line.add.lwd}{a kx1 vector corresponding to the columns of line.add; 
+specifies the line
 widths for the k line segments.}
-  \item{line.add.col}{a kx1 vector corresponding to the columns of line.add; specifies the line
+  \item{line.add.col}{a kx1 vector corresponding to the columns of line.add; 
+specifies the line
 colors for the k line segments.}
-  \item{point.pch}{vector of pch values for points representing each event.  If similar
+  \item{point.pch}{vector of pch values for points representing each event.  
+If similar
 events are listed in multiple columns (e.g., regular visits or
 a recurrent event), repeated pch values may be listed in the
 vector (e.g., c(2,4,rep(183,3))).
@@ -265,43 +304,55 @@ lengths are equal; a warning message will verify this condition.}
   \item{point.col}{vector of colors of points representing each event.
 If length(point.col) < length(subset.c), point.col will be repeated until
 lengths are equal; a warning message will verify this condition.}
-  \item{legend.plot}{logical flag;if TRUE, a legend will be plotted. Location of legend will
+  \item{legend.plot}{logical flag;if TRUE, a legend will be plotted. Location 
+of legend will
 be based on specification of legend.location along with values of other
 arguments listed below. Default is FALSE (i.e., no legend plotting).}
 \item{legend.location}{will be used only if legend.plot=TRUE.
 If 'o' (default), a one-page legend will precede the output of the chart.
-The user will need to hit <enter> in order for the event chart to be displayed.If 'i', an internal legend will be placed in the plot region
+The user will need to hit <enter> in order for the event chart to be 
+displayed.If 'i', an internal legend will be placed in the plot region
 based on legend.point.at.  If 'l', a legend will be placed in the plot region
 using the locator option.  Legend will map points to events (via column
 names, by default) and, if line.by is specified, lines to groups (based on
 levels of line.by).}
-  \item{legend.titl}{title for the legend; default is title to be used for main plot.
+  \item{legend.titl}{title for the legend; default is title to be used for 
+main plot.
 Only used when legend.location = 'o'.}
   \item{legend.titl.cex}{size of text for legend title.  Only used when
 legend.location = 'o'.}
-  \item{legend.titl.line}{line location of legend title dictated by mtext function with outer=FALSE option;
+  \item{legend.titl.line}{line location of legend title dictated by mtext 
+function with outer=FALSE option;
 default is 1.0.  Only used when legend.location = 'o'.}
-  \item{legend.point.at}{location of upper left and lower right corners of legend area to
+  \item{legend.point.at}{location of upper left and lower right corners of 
+legend area to
 be utilized for describing events via points and text.}
-  \item{legend.point.pch}{vector of pch values for points representing each event in the legend.
+  \item{legend.point.pch}{vector of pch values for points representing each 
+event in the legend.
 Default is point.pch.}
-  \item{legend.point.text}{text to be used for describing events;  the default is setup for a data frame,
+  \item{legend.point.text}{text to be used for describing events;  the default 
+is setup for a data frame,
 as it will print the names of the columns specified by subset.c .}
-  \item{legend.cex}{size of text for points and event descriptions.  Default is 2.5 which is setup
+  \item{legend.cex}{size of text for points and event descriptions.  Default 
+is 2.5 which is setup
 for legend.location = 'o'.  A much smaller cex is recommended (possibly 0.75)
 for use with legend.location = 'i' or legend.location = 'l'.}
-  \item{legend.bty}{option to put a box around the legend(s); default is to have no box
+  \item{legend.bty}{option to put a box around the legend(s); default is to 
+have no box
 (legend.bty = 'n').  Option legend.bty = 'o' will produce a legend box.}
-  \item{legend.line.at}{if line.by was specified (with legend.location = 'o' or legend.location = 'i'),
+  \item{legend.line.at}{if line.by was specified (with legend.location = 'o' 
+or legend.location = 'i'),
 this argument will dictate the location of the upper left and lower right
 corners of legend area to be utilized for describing the different
 line.by values (e.g., treatment.arm).  The default is setup for
 legend.location == 'o'.}
-  \item{legend.line.text}{text to be used for describing line.by values;  the default are the names
+  \item{legend.line.text}{text to be used for describing line.by values;  the 
+default are the names
 of the unique non-missing line.by values as produced from the table function.}
   \item{legend.line.lwd}{vector of line widths corresponding to line.by
 values.}
-  \item{legend.loc.num}{number used for locator argument when legend.locator = 'l'.  If 1 (default),
+  \item{legend.loc.num}{number used for locator argument when legend.locator = 
+'l'.  If 1 (default),
 user is to locate only the top left corner of the legend box.  If 2, user
 is to locate both the top left corner and the lower right corner.  This will
 be done twice when line.by is specified (once for points and once for lines).}
@@ -318,7 +369,6 @@ existing prior to start of function.
   \code{\link{julian}},
   \code{\link{month.day.year}},
   \code{\link{event.convert}},
-  \code{\link{hplot}},
   \code{\link{chron}}
 }
 \examples{
@@ -326,10 +376,10 @@ data(shin)
 shin<-as.matrix(shin)
 
 ##Data were extracted from Shin D.M., Lee, J.S., Lippman, S.M., Lee, J.J.,
-##Tu, Z.N.,Choi, G., Heyne, K., Shin, H.J.,C., Ro, J.Y., Goepfert, H., Hong, W. K.,
-##and Hittelman, W. N. (1996), "p53 Expression: Predicting Recurrence and
-##Second  Primary Tumors in Head and Neck Squamous Cell Carcinoma,
-##" Journal of National  Cancer Institute, 88, 519-529.
+##Tu, Z.N.,Choi, G., Heyne, K., Shin, H.J.,C., Ro, J.Y., Goepfert, H., Hong, 
+##W. K.,and Hittelman, W. N. (1996), "p53 Expression: Predicting Recurrence
+##and Second  Primary Tumors in Head and Neck Squamous Cell Carcinoma,
+##"Journal of National  Cancer Institute, 88, 519-529.
 
 ##id denotes subject ID
 ##age denotes the age of the subject
@@ -428,9 +478,10 @@ abline(v=c(julian(1,27,1986)-julian(5,29,1981),
 
 ##(c) to produce Event Chart by time of recurrence
 
-event.chart(shin,subset.c=c(5,6,7,8,9),x.reference=6,NA.rm=TRUE,sort.ascending=FALSE,
- x.julian=TRUE, x.scale=365, y.idlabels=1,
- point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),point.col=rep(1,5),
+event.chart(shin,subset.c=c(5,6,7,8,9),x.reference=6,NA.rm=TRUE,
+ sort.ascending=FALSE, x.julian=TRUE, x.scale=365, y.idlabels=1,
+ point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),
+ point.col=rep(1,5),
  line.lwd=1,x.lab='Years From Recurrence',
  y.lab='Patient ID',titl="(c) EC by Time to Recurrence",
  y.axis='custom',y.axis.custom.at=1:20,y.axis.custom.label=1:20,
@@ -439,16 +490,16 @@ event.chart(shin,subset.c=c(5,6,7,8,9),x.reference=6,NA.rm=TRUE,sort.ascending=F
 
 ## (d) to produce Event Chart by time to SPT
 
-event.chart(shin,subset.c=c(5,6,7,8,9),x.reference=7,NA.rm=TRUE,sort.ascending=FALSE,
- x.julian=TRUE, x.scale=365, y.idlabels=1,
- point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),point.col=rep(1,5),
- line.lwd=1,x.lab='Years From SPT',
+event.chart(shin,subset.c=c(5,6,7,8,9),x.reference=7,NA.rm=TRUE,
+ sort.ascending=FALSE,x.julian=TRUE, x.scale=365, y.idlabels=1,
+ point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),
+ point.col=rep(1,5),line.lwd=1,x.lab='Years From SPT',
  y.lab='Patient ID',titl="(d) EC by Time to SPT",
  y.axis='custom',y.axis.custom.at=1:20,y.axis.custom.label=1:20,
  omi=c(1.5,0,.7,.2), mai=c(.6,.9,.6,.1), mgp=c(2,.4,0), cex=.7,
  sort.by=13)
 
-## (a) to produce Event Chart p53 and On-Study time
+##(a) to produce Event Chart p53 and On-Study time
 
 event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=5, sort.ascending=FALSE,
  x.julian=TRUE, x.scale=365, y.idlabels=1,
@@ -461,11 +512,11 @@ event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=5, sort.ascending=FALSE,
 par(omi=c(0,0,0,0))
 mtext(side=3,"Extensions of Event Charts for Showing the Covariate Effect:",Line=4)
 
-
 ## (b) to produce Event Chart by p53 and time to recur
 
-event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=6, NA.rm=TRUE, sort.ascending=FALSE,
- x.julian=TRUE, x.scale=365, y.idlabels=1,
+event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=6,
+ NA.rm=TRUE,
+ sort.ascending=FALSE,x.julian=TRUE, x.scale=365, y.idlabels=1,
  point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),point.col=rep(1,5),
  x.lab='Years From Recurrence',
  y.lab='Patient ID',titl="(b) EC by p53 & Time to Recur",
@@ -474,8 +525,8 @@ event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=6, NA.rm=TRUE, sort.ascendin
 
 ## (c) to produce Event Chart by p53 and time to SPT
 
-event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=7, NA.rm=TRUE, sort.ascending=FALSE,
- x.julian=TRUE, x.scale=365, y.idlabels=1,
+event.chart(shin,subset.c=c(5,6,7,8,9), x.reference=7, NA.rm=TRUE,
+ sort.ascending=FALSE,x.julian=TRUE, x.scale=365, y.idlabels=1,
  point.cex=c(.6,.8,.6,.8,.8),point.pch=c(1,17,16,4,0),point.col=rep(1,5),
  x.lab='Years From SPT',
  y.lab='Patient ID',titl="(c) EC by p53 & Time to SPT",
@@ -502,15 +553,22 @@ mtext(side=1,"Solid Line for p53(+) Cases and Dashed Line for p53(-) Cases",
 line=3)
 
 }
+
 \references{
-\item[]Dubin, J. A., Lee, J. J., Hess, K. R. (1997). "The Utility of Event Charts,"
-in Proceedings of the Biometrics Section, the American Statistical Association, 196-201.
-\item[]Lee, J. J., Hess, K. R. and Dubin, J. A. (2000) "Extensions and Applications of Event Charts,"
+\item{} Dubin, J. A., Lee, J. J., Hess, K. R. (1997). "The Utility of Event
+Charts,"
+in Proceedings of the Biometrics Section, the American Statistical
+Association, 196-201.
+\item{} Lee, J. J., Hess, K. R. and Dubin, J. A. (2000) "Extensions and
+Applications of Event Charts,"
 The American Statistician 54, 63-70.
-\item[] Shin, D.M., Lee, J.S., Lippman, S.M., Lee, J.J., Tu, Z.N.,
+\item{} Shin, D.M., Lee, J.S., Lippman, S.M., Lee, J.J., Tu, Z.N.,
 Choi, G., Heyne, K., Shin, H.J.C., Ro, J.Y. Goepfert, H., Hong, W.K., and
-Hittelman, W.N. (1996) "p53 Expression: Predicting Recurrence and Second Primary
+Hittelman, W.N. (1996) "p53 Expression: Predicting Recurrence and Second 
+Primary
 Tumors in Head and Neck Squamous Cell Carcinoma", Journal of National Cancer
 Institute, 88, 519-529.
 }
-\keyword{event.chart,hplot,chron}
+\keyword{chron}
+\keyword{datasets}
+
